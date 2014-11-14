@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FDN Analytics</title>
+    <title>Simple Analytics Dasboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -113,7 +113,7 @@
 
 
         <footer>
-            <p>&copy; Female Daily Network 2014</p>
+            <p>&copy; andreanisme - 2014</p>
         </footer>
     </div>
     <!-- /container -->
