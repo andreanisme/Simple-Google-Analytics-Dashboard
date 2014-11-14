@@ -1,0 +1,21 @@
+.main{
+	margin-top: 90px;
+}
+
+.cols-date{
+	text-align: center;
+}
+
+.cols-date h2{
+	background: #ccc;
+	text-align: center;
+	font-size: 22px;
+	margin-bottom: 0;
+}
+
+.cols-date h1{
+	border: 1px solid #ccc;
+	margin-top: 0;
+	padding-top: 22px;
+	padding-bottom: 22px;
+}
