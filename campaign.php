@@ -39,14 +39,16 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Daily</a>
+                    <li class="active"><a href="/">Daily</a>
                     </li>
 
-                    <li class="active"><a href="weekly.php">Weekly</a>
+                    <li><a href="weekly.php">Weekly</a>
 
                     <li><a href="monthly.php">Monthly</a>
                     </li>
+                    
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#" title=""><div id="embed-api-auth-container"></a></div></li>
                 </ul>
@@ -56,10 +58,14 @@
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
+   
+    <?php 
+        $yesterday  = date('l j-F', mktime(0, 0, 0, date("m") , date("d")-1, date("Y")));
+        $xxx  = date('l j-F', mktime(0, 0, 0, date("m")  , date("d")-7, date("Y")));
+    ?>
 
 
     <div class="container main">
-        
 
         <!--<div class="row">
             <div class="btn-group" role="group" aria-label="...">
@@ -74,28 +80,15 @@
 
         <div class="row">
             <hr>
-            <h3>Weekly</h3>
+            <h3>Weekly ( <?php echo ($xxx . ' s/d ' . $yesterday); ?> )</h3>
             <hr>
         </div>
 
-        <div class="row"><h2>PAGEVIEWS</h2></div>
-
-
         <div class="row">
             <div class="col-md-12">  
-                <h3>Pageviews Mei 2012 - Desember 2012</h3>
+                <h3>Pageviews</h3>
                 <small>Counts the total number of pageviews.</small>
-                <div id="chart-pageviews-weekly-2012-container"></div>
-            </div>
-            <div class="col-md-12">
-                <h3>Pageviews Januari 2013 - Desember 2013</h3>
-                <small>Counts the total number of pageviews.</small>
-                <div id="chart-pageviews-weekly-2013-container"></div>
-            </div>
-            <div class="col-md-12">
-                <h3>Pageviews Januari 2014 - Now</h3>
-                <small>Counts the total number of pageviews.</small>
-                <div id="chart-pageviews-weekly-2014-container"></div>
+                <div id="chart-container-custom-campaign"></div>
             </div>
         </div>
 
@@ -177,20 +170,19 @@
         });
 
         /**
-         * Create a new DataChart instance for pageviews over the 7 days prior
-         * to the past 7 days.
-         * It will be rendered inside an element with the id "chart-2-container".
-         */
-        var dataChartPageviews2012 = new gapi.analytics.googleCharts.DataChart({
+         * CUSTOM *
+        **/
+        var customCampaign = new gapi.analytics.googleCharts.DataChart({
             query: {
-                metrics: 'ga:pageviews',
-                dimensions: 'ga:week',
-                'start-date': '2012-01-01',
-                'end-date': '2012-12-31'
+                metrics: 'ga:sessions,ga:pageviews',
+                dimensions: 'ga:pagePath',
+                filters: 'ga:pagePath==/tentang-women-of-worth-indonesia',
+                'start-date': '7daysAgo',
+                'end-date': 'yesterday'
             },
             chart: {
-                container: 'chart-pageviews-weekly-2012-container',
-                type: 'COLUMN',
+                container: 'chart-container-custom-campaign',
+                type: 'TABLE',
                 options: {
                     width: '100%'
                 }
@@ -202,31 +194,15 @@
          * to the past 7 days.
          * It will be rendered inside an element with the id "chart-2-container".
          */
-        var dataChartPageviews2013 = new gapi.analytics.googleCharts.DataChart({
+        var dataChartPageviews = new gapi.analytics.googleCharts.DataChart({
             query: {
                 metrics: 'ga:pageviews',
-                dimensions: 'ga:week',
-                'start-date': '2013-01-01',
-                'end-date': '2013-12-31'
+                dimensions: 'ga:day',
+                'start-date': '7daysAgo',
+                'end-date': 'yesterday'
             },
             chart: {
-                container: 'chart-pageviews-weekly-2013-container',
-                type: 'COLUMN',
-                options: {
-                    width: '100%'
-                }
-            }
-        });
-
-        var dataChartPageviews2014 = new gapi.analytics.googleCharts.DataChart({
-            query: {
-                metrics: 'ga:pageviews',
-                dimensions: 'ga:week',
-                'start-date': '2014-01-01',
-                'end-date': '2014-12-31'
-            },
-            chart: {
-                container: 'chart-pageviews-weekly-2014-container',
+                container: 'chart-pageviews-container',
                 type: 'COLUMN',
                 options: {
                     width: '100%'
@@ -281,20 +257,31 @@
          * Render both dataCharts on the page whenever a new view is selected.
          */
         viewSelector.on('change', function(ids) {
-
-            dataChartPageviews2012.set({
+            dataChart.set({
                 query: {
                     ids: ids
                 }
             }).execute();
 
-            dataChartPageviews2013.set({
+            dataChartPageviews.set({
                 query: {
                     ids: ids
                 }
             }).execute();
 
-            dataChartPageviews2014.set({
+            dataChart1.set({
+                query: {
+                    ids: ids
+                }
+            }).execute();
+
+            dataChart2.set({
+                query: {
+                    ids: ids
+                }
+            }).execute();
+
+            customCampaign.set({
                 query: {
                     ids: ids
                 }

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Analytics Dasboard</title>
+    <title>Simple Analytics Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">FDN Analytics</a>
+                <a class="navbar-brand" href="#">Simple GA Dashboard</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -138,7 +138,7 @@
          */
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
-            clientid: '1061517742113-vk09kc7adlb4q6b134d726bdvg2ekuj8.apps.googleusercontent.com',
+            clientid: '968727165051-ho6hiardc0jf91rvds2b0v63mue5cbku.apps.googleusercontent.com',
         });
 
 
